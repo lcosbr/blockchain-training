@@ -1,0 +1,39 @@
+$invalid-color:#CC3C3C;
+$valid-color:#4CA64C;
+
+head{
+  font-family: Arial, Helvetica, sans-serif;
+}
+h2{
+  font-size: 30px;
+  &:hover{
+    opacity: 0.8;
+  }
+}
+.invalid{
+  color: $invalid-color;
+}
+.valid{
+  color: $valid-color;
+}
+.empty{
+  visibility:hidden
+}
+.transactionCount{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+#btnMine{
+  background-color: #f89a14;
+  border: solid 1px #ad6b0e;
+  border-radius: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+  color: white;
+  &:hover{
+    background-color: #f9ae42;
+  }
+}
+
+
