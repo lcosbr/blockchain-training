@@ -92,8 +92,8 @@ export class Blockchain {
         return this.getLatestBlock().index + 1;
     }
 
-    newTransaction( amount: number, sender : string, recipient: string): Transaction{
-        const transaction = new Transaction(amount, sender,recipient);
+    newTransaction(amount: number, sender: string, recipient: string): Transaction {
+        const transaction = new Transaction(amount, sender, recipient);
         return transaction;
     }
 

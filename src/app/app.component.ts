@@ -11,12 +11,12 @@ export class AppComponent {
   public isValid: boolean;
   public blockchain: Blockchain;
 
-  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService){
+  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) {
     this.blockchain = this.blockchainService.blockchain;
     this.isValid = this.blockchain.isValidChain(this.blockchain);
   }
 
-  onMine(): boolean{
+  onMine(): boolean {
     return this.blockchainService.mine();
   }
 }
