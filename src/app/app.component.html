@@ -1,21 +1,68 @@
 <header>
-  <h2 [ngClass]="{'valid': isValid,'invalid': !isValid}">BlockChain</h2>
-  <div [ngClass]="{'empty': blockchain.pendingTransactions.length===0,'transactionCount': blockchain.pendingTransactions.length>=0 }">
-    {{blockchain.pendingTransactions.length}} Pending Transactions
-  </div>
-  <nav>
-      <button [ngClass]="'navBtn'" [routerLink]="['dashboard']">Dashboard</button>
-    <button [ngClass]="'navBtn'" [routerLink]="['send-transaction']">Send Transaction</button>
-    <button tooltip="Minerar novo bloco!" id='btnMine' (click)="onMine()">Mine</button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <a
+      class="navbar-brand mb-0 h1"
+      href="#"
+      [ngClass]="{ valid: isValid, invalid: !isValid }"
+    >
+      <span>BlockChain</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarsExample09"
+      aria-controls="navbarsExample09"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <!--<li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>-->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['send-transaction']">Send Transaction</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <div
+            class="navbar-text mr-sm-3 mt-sm-2"
+            [ngClass]="{
+              empty: blockchain.pendingTransactions.length === 0,
+              transactionCount: blockchain.pendingTransactions.length >= 0
+            }"
+          ><b>{{ blockchain.pendingTransactions.length }}</b> Pending Transactions
+          </div>
+        </li>
+        <li class="nav-item">
+          <button
+            tooltip="Mine a new block!"
+            placement="bottom"
+            class="btn btn-warning my-2 my-sm-0"
+            (click)="onMine()">Mine
+          </button>
+        </li>
+      </ul>
+    </div>
   </nav>
 </header>
 
-<main>
-  <br>
-  <router-outlet></router-outlet>
+<main role="main">
+  <div class="jumbotron">
+    <div class="col-sm-9 mx-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </main>
-<pre>
+
+<!--<pre>
     {{blockchain | json}}
-</pre>
-
-
+</pre>-->

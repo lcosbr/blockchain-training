@@ -1,7 +1,18 @@
 <div>
-  <ul>
-    <li>Index: {{block.index}}</li>
-    <li>Hash: {{block.hash}}</li>
-    <li>Transactions: {{block.transactions.length}}</li>
-  </ul>
+    <table class="table table-hover bg-light">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Index</th>
+            <th scope="col">Transactions</th>
+            <th scope="col">Hash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>{{block.index}}</th>
+            <td>{{block.transactions.length}}</td>
+            <td>{{block.hash}}</td>
+          </tr>
+        </tbody>
+      </table>
 </div>
