@@ -4,10 +4,9 @@
     {{blockchain.pendingTransactions.length}} Pending Transactions
   </div>
   <nav>
-      <button [routerLink]="['dashboard']">Dashboard</button>
-    <button [routerLink]="['send-transaction']">Send Transaction</button>
-    <button [routerLink]="['balance']">View Balance</button>
-    <button id='btnMine' (click)="onMine()">Mine</button>
+      <button [ngClass]="'navBtn'" [routerLink]="['dashboard']">Dashboard</button>
+    <button [ngClass]="'navBtn'" [routerLink]="['send-transaction']">Send Transaction</button>
+    <button tooltip="Minerar novo bloco!" id='btnMine' (click)="onMine()">Mine</button>
   </nav>
 </header>
 
@@ -18,3 +17,5 @@
 <pre>
     {{blockchain | json}}
 </pre>
+
+
