@@ -9,7 +9,7 @@ import { BalanceComponent } from './balance/balance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlockComponent } from './block/block.component';
 
-//NGX-BootstrapImports
+// NGX-BootstrapImports
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -17,7 +17,7 @@ import { TransactionButtonComponent } from './transaction-button/transaction-but
 
 const GenesisProvider = () => {
   return new Block(1, 12312, [], 'GENESIS', '0as1234', '00');
-}
+};
 
 @NgModule({
   declarations: [
