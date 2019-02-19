@@ -1,0 +1,39 @@
+<button
+  tooltip="Pending Transactions"
+  placement="bottom"
+  type="button"
+  class="btn btn-primary mr-sm-1"
+  (click)="openModal(modalPendingTransaction, modalNonPendingTransaction);">
+  Transactions
+  <span class="badge badge-light">{{
+    blockchain.pendingTransactions.length
+  }}</span>
+</button>
+
+<ng-template #modalPendingTransaction>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">We have <b>{{ blockchain.pendingTransactions.length }}</b> transactions pending!</h4>
+    </div>
+    <div class="modal-body">
+      <span>Text Goes Here!</span>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="modalRef.hide()">Mine</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+      </div>
+</ng-template>
+
+<ng-template #modalNonPendingTransaction>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">No Transactions Pending!</h4>
+    </div>
+    <div class="modal-body text-center">
+      <span>You can create a new transaction or view the dashboard clicking on the button below!</span>
+    </div>
+    <div class="modal-footer ce">
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['send-transaction']">New Transaction</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+</ng-template>

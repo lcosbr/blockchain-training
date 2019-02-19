@@ -1,8 +1,66 @@
-<app-balance
-[chain]="blockchain.chain"
-></app-balance>
-<div id="dashboard-wrapper">
-  <div *ngFor="let block of blockchain.chain">
-    <app-block [block]='block'></app-block>
-  </div>
+<div>
+    <tabset>
+      <tab heading="Blocks" id="tab1">
+          <div id="dashboard-wrapper">
+              <table blockTable  class="table table-hover">
+                  <thead class="grey lighten-1 black-text">
+                    <tr>
+                      <th scope="col">Index</th>
+                      <th>Transactions</th>
+                      <th>Difficulty</th>
+                      <th>Hash</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <tr *ngFor="let block of chain">
+                      <th scope="row">{{ block.index }}</th>
+                      <td scope="row">{{ block.transactions.length }}</td>
+                      <td scope="row">{{ blockchain.dificultyStats }}</td>
+                      <td scope="row">{{ block.hash }}</td>
+                  </tr>
+                </tbody>
+                </table>
+          </div>
+      </tab>
+      <tab (select)="listAllTransactionsDone()" heading="Transactions">
+          <table blockTable  class="table table-hover">
+              <thead class="grey lighten-1 black-text">
+                <tr>
+                  <th scope="col">Index</th>
+                  <th>Time</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr *ngFor="let transaction of transactions">
+                  <th scope="row">{{ transaction.id }}</th>
+                  <td scope="row">{{ transaction.timestamp }}</td>
+                  <td scope="row">{{ transaction.recipient }}</td>
+                  <td scope="row">{{ transaction.amount }}</td>
+              </tr>
+            </tbody>
+            </table>
+      </tab>
+      <tab heading="Pending Transactions">
+          <table blockTable  class="table table-hover">
+              <thead class="grey lighten-1 black-text">
+                <tr>
+                  <th scope="col">Index</th>
+                  <th>Time</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr *ngFor="let pendingTransactions of blockchain.pendingTransactions">
+                  <th scope="row">{{ pendingTransactions.id }}</th>
+                  <td scope="row">{{ pendingTransactions.timestamp }}</td>
+                  <td scope="row">{{ pendingTransactions.recipient }}</td>
+                  <td scope="row">{{ pendingTransactions.amount }}</td>
+              </tr>
+            </tbody>
+            </table>
+      </tab>
+    </tabset>
 </div>

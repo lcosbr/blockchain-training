@@ -4,6 +4,7 @@ import { SendTransactionComponent } from './send-transaction/send-transaction.co
 import { BalanceComponent } from './balance/balance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanSendGuard } from './can-send.guard';
+import { TransactionButtonComponent } from './transaction-button/transaction-button.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,9 @@ const routes: Routes = [
      component: SendTransactionComponent,
      canActivate: [CanSendGuard]
   },
-  { path: 'dashboard', component: DashboardComponent}
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'balance', component: BalanceComponent},
+  { path: 'transaction-button', component: TransactionButtonComponent}
 ];
 
 @NgModule({

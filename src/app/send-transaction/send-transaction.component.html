@@ -1,9 +1,39 @@
 <div>
- <label for="amount">Amount:  </label>
- <input #amount type="number" step="0.5">   <br>
-
- <label for="recipient">Recipient:  </label>
- <input #recipient type="text" placeholder="Recipient ID"><br>
-
- <button (click)="onSend(amount.value, recipient.value)"> Send</button>
+  <div class="form-group">
+      <label for="recipient">Recipient:  </label>
+ <input #recipient type="text" class="form-control" placeholder="Recipient ID">
+  </div>
+  <div class="form-group">
+      <label for="amount">Amount:  </label>
+      <input #amount type="number" class="form-control" step="0.5">
+  </div>
+ <button class="btn btn-primary" (click)="onSend(amount.value, recipient.value, modalConfirmed, modalNotConfirmed);"> Send</button>
 </div>
+
+<ng-template #modalConfirmed>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Transaction Created!</h4>
+    </div>
+    <div class="modal-body">
+      <span class="font-weight-bold">Transaction ID: </span>{{ transaction.id }} <br>
+      <span class="font-weight-bold">Date: </span>{{ transaction.timestamp }} <br>
+      <span class="font-weight-bold">Amount value: </span>{{ transaction.amount }} <br>
+      <span class="font-weight-bold">Recipient: </span>{{ transaction.recipient }} <br>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+      </div>
+</ng-template>
+
+<ng-template #modalNotConfirmed>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Transaction not created!</h4>
+    </div>
+    <div class="modal-body">
+      The transaction has not created due to a error! <br>
+      Please, try again.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+      </div>
+</ng-template>

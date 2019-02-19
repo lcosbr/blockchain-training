@@ -11,11 +11,13 @@ export class Blockchain {
     public nodeUrl: string;
     public networdNodes: string[] = [];
     private dificulty: number;
+    public dificultyStats: number;
 
     constructor(GENESIS_BLOCK: Block, dificulty = 2) {
         this.chain = [GENESIS_BLOCK];
         this.nodeUrl = uuid();
         this.dificulty = dificulty;
+        this.dificultyStats = dificulty;
     }
 
     newBlock(nonce: string | number, previousHash: string, hash: string): Block {
@@ -93,8 +95,18 @@ export class Blockchain {
     }
 
     newTransaction(amount: number, sender: string, recipient: string): Transaction {
-        const transaction = new Transaction(amount, sender, recipient);
+        const transaction = new Transaction(amount, sender, recipient, String(Date.now()));
         return transaction;
+    }
+
+    listAllTransactions(): Transaction[] {
+      const transactions: Transaction[] = [];
+      for (const block of this.chain) {
+        for (const transaction of block.transactions) {
+          transactions.push(transaction);
+        }
+      }
+      return transactions;
     }
 
 }

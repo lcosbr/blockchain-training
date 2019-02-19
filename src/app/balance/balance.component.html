@@ -1,7 +1,20 @@
 <div>
-  <input #owner type="text">
-  <button (click)="getBalance(owner.value)">Get Balance</button>
-  <br>
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Owner Username</span>
+      </div>
+      <input #owner type="text" class="form-control" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button
+          class="btn btn-primary"
+          type="button"
+          id="button-addon2"
+          (click)="getBalance(owner.value)">
+          Get Balance
+        </button>
+      </div>
+    </div>
+
   <span class="balance">
     Saldo de {{balance.owner}}: R${{balance.value}}
   </span>

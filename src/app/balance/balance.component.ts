@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Block, Transaction } from 'projects/blockchain/src/public_api';
-import { totalmem } from 'os';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Block, Transaction, BlockchainService } from 'projects/blockchain/src/public_api';
 
 @Component({
   selector: 'app-balance',
@@ -11,31 +10,29 @@ export class BalanceComponent implements OnInit {
   @Input() chain: Block[];
 
   private owner: string;
-  private value = 0;
+  private value: number;
   public balance: { owner: string; value: number };
 
-  constructor() {}
-
-  ngOnInit() {
-    this.balance = { owner: this.owner, value: this.value };
+  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) {
+    this.chain = blockchainService.blockchain.chain;
   }
 
-  getBalance(owner: string){
-    this.owner = owner;
-    const initial = new Transaction(0, 'system', owner);
-    const transactionReducer = (transaction: Transaction, total: Transaction) =>{
-      if (transaction.recipient === owner) {
-        total.amount = Number(transaction.amount) + Number(total.amount);
-      }
-      return total;
-    };
+  ngOnInit() {
+    this.balance = { owner: this.owner , value: this.value };
+  }
 
-    const chain = JSON.parse(JSON.stringify(this.chain));
-    const transactions = chain.map((block: Block) => {
-      return block.transactions.reduce(transactionReducer, initial);
-    });
-    const balance = transactions.reduce(transactionReducer, initial);
-    this.value = balance.amount;
-    this.balance = { owner: this.owner, value: this.value };
+  getBalance(owner: string) {
+    this.owner = owner;
+    this.value = 0;
+    const chain = this.chain;
+    for (const blocks of chain) {
+      for (const transaction of blocks.transactions) {
+        if (transaction.recipient === this.owner) {
+            this.value = Number(transaction.amount) + this.value;
+        }
+      }
+    }
+    this.balance.owner = this.owner;
+    this.balance.value = this.value;
   }
 }

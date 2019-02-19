@@ -21,26 +21,20 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <!--<li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>-->
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['dashboard']">Dashboard</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['balance']">User Info</a>
+          </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['send-transaction']">Send Transaction</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <div
-            class="navbar-text mr-sm-3 mt-sm-2"
-            [ngClass]="{
-              empty: blockchain.pendingTransactions.length === 0,
-              transactionCount: blockchain.pendingTransactions.length >= 0
-            }"
-          ><b>{{ blockchain.pendingTransactions.length }}</b> Pending Transactions
-          </div>
+            <app-transaction-button>
+            </app-transaction-button>
         </li>
         <li class="nav-item">
           <button

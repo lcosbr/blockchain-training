@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { BlockchainService, Blockchain } from 'projects/blockchain/src/public_api';
+import { BlockchainService, Blockchain, Block, Transaction } from 'projects/blockchain/src/public_api';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,19 @@ import { BlockchainService, Blockchain } from 'projects/blockchain/src/public_ap
 })
 export class DashboardComponent implements OnInit {
   public blockchain: Blockchain;
-  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) { }
+  public chain: Block[];
+  public transactions: Transaction[] = [];
+
+  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) {
+    this.blockchain = blockchainService.blockchain;
+    this.chain = blockchainService.blockchain.chain;
+   }
 
   ngOnInit() {
-    this.blockchain = this.blockchainService.blockchain;
-  }
+   }
+
+   listAllTransactionsDone() {
+    this.transactions = this.blockchain.listAllTransactions();
+   }
 
 }
