@@ -9,11 +9,18 @@ import { BalanceComponent } from './balance/balance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlockComponent } from './block/block.component';
 
+// NGXDataTableImport
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 // NGX-BootstrapImports
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TransactionButtonComponent } from './transaction-button/transaction-button.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { MineButtonComponent } from './mine-button/mine-button.component';
+import { TestTableComponent } from './test-table/test-table.component';
 
 const GenesisProvider = () => {
   return new Block(1, 12312, [], 'GENESIS', '0as1234', '00');
@@ -26,14 +33,19 @@ const GenesisProvider = () => {
     BalanceComponent,
     DashboardComponent,
     BlockComponent,
-    TransactionButtonComponent
+    TransactionButtonComponent,
+    FooterComponent,
+    HeaderComponent,
+    MineButtonComponent,
+    TestTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    NgxDatatableModule
   ],
   providers: [{
     provide: 'GENESIS_BLOCK',

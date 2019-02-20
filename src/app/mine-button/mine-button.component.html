@@ -1,0 +1,37 @@
+<button
+  tooltip="Mine a new block!"
+  placement="bottom"
+  class="btn btn-warning my-2 my-sm-0"
+  (click)="onMine(modalMineSuccess, modalMineNoSuccess)">
+  Mine
+</button>
+
+
+<ng-template #modalMineSuccess>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Block Mine Success!</h4>
+  </div>
+  <div class="modal-body">
+    <span class="text-muted">A new Block has been mined! </span> <br>
+    <span class="font-weight-bold">Index: </span>{{ lastBlock.index }} <br>
+    <span class="font-weight-bold">Date: </span>{{ lastBlock.timestamp }} <br>
+    <span class="font-weight-bold">Total of Transactions: </span>{{ lastBlock.transactions.length }} <br>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
+      <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #modalMineNoSuccess>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Block Mine Unsuccess!</h4>
+  </div>
+  <div class="modal-body">
+    <span>Mine Block unsuccess due to a error! <br>Please, try again.</span>
+  </div>
+  <div class="modal-footer ce">
+      <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
+      <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+  </div>
+</ng-template>

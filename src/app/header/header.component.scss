@@ -1,0 +1,32 @@
+// BlockChain Valid Colors
+$invalid-color:#CC3C3C;
+$valid-color:rgb(88, 172, 40);
+
+.invalid{
+  color: $invalid-color;
+  &:hover{
+    opacity: 0.7;
+    color: $invalid-color;
+  }
+}
+.valid{
+  color: $valid-color;
+  &:hover{
+    opacity: 0.7;
+    color: $valid-color;
+  }
+  &:active{
+    opacity: 1;
+    color: $valid-color;
+  }
+  &:focus{
+    opacity: 1;
+    color: $valid-color;
+  }
+}
+
+// NavbarCustomConfigs
+.navbar{
+  padding-bottom: 10px;
+  margin: 0.10% 0.20%;
+}

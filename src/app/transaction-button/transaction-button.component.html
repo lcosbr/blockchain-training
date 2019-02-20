@@ -19,8 +19,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
-        <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="modalRef.hide()">Mine</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+        <app-mine-button (click)="modalRef.hide()"></app-mine-button>
+        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
       </div>
 </ng-template>
 
@@ -34,6 +34,6 @@
     <div class="modal-footer ce">
         <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['send-transaction']">New Transaction</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
     </div>
 </ng-template>

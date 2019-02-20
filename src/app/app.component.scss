@@ -1,64 +1,14 @@
-$invalid-color:#CC3C3C;
-$valid-color:rgb(88, 172, 40);
-
 head{
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #cecece;
 }
-.invalid{
-  color: $invalid-color;
-  &:hover{
-    opacity: 0.7;
-    color: $invalid-color;
-  }
-}
-.valid{
-  color: $valid-color;
-  &:hover{
-    opacity: 0.7;
-    color: $valid-color;
-  }
-  &:active{
-    opacity: 1;
-    color: $valid-color;
-  }
-  &:focus{
-    opacity: 1;
-    color: $valid-color;
-  }
-}
-.empty{
-  visibility:hidden
-}
-.transactionCount{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-#btnMine{
-  background-color: #f89a14;
-  border: solid 1px #ad6b0e;
-  border-radius: 5px;
-  font-weight: bold;
-  color: white;
-  &:hover{
-    background-color: #f9ae42;
-  }
-}
-.navBtn{
-  background-color: #00478a;
-  border: solid 1px #01315e;
-  border-radius: 5px;
-  margin-right: 3px;
-  font-weight: bold;
-  color: white;
-  &:hover{
-    background-color: #0060b9;
-  }
+body {
+  background-color: #cecece;
+  padding-top: 4%;
 }
 
 
 //Bootstrap Class Overwrite
-
 .jumbotron{
-  background-color: #f1f1f1;
+  background-color: #ffffff;
 }

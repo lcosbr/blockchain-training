@@ -1,62 +1,13 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-    <a
-      class="navbar-brand mb-0 h1"
-      href="#"
-      [ngClass]="{ valid: isValid, invalid: !isValid }"
-    >
-      <span>BlockChain</span>
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarsExample09"
-      aria-controls="navbarsExample09"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<app-header>
+</app-header>
 
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['dashboard']">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['balance']">User Info</a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['send-transaction']">Send Transaction</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <app-transaction-button>
-            </app-transaction-button>
-        </li>
-        <li class="nav-item">
-          <button
-            tooltip="Mine a new block!"
-            placement="bottom"
-            class="btn btn-warning my-2 my-sm-0"
-            (click)="onMine()">Mine
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
-
-<main role="main">
+<body role="main">
   <div class="jumbotron">
     <div class="col-sm-9 mx-auto">
       <router-outlet></router-outlet>
     </div>
   </div>
-</main>
+</body>
 
-<!--<pre>
-    {{blockchain | json}}
-</pre>-->
+<app-footer>
+</app-footer>
