@@ -1,0 +1,28 @@
+.hash{
+  font-size: 12px;
+  font-style: italic;
+  color: rgb(95, 95, 95);
+}
+.row-border{
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.row-border:hover{
+  opacity: 0.9;
+}
+.row-border>tbody{
+  color: black;
+}
+table{
+  border: 1px #cfcfcf solid;
+}
+table.dataTable thead th{
+  border-bottom: 1px #cfcfcf solid;
+}
+table.dataTable.no-footer{
+  border-bottom: 1px #cfcfcf solid;
+}
+
+

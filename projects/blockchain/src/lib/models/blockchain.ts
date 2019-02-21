@@ -10,14 +10,13 @@ export class Blockchain {
     public pendingTransactions: Transaction[] = [];
     public nodeUrl: string;
     public networdNodes: string[] = [];
-    private dificulty: number;
-    public dificultyStats: number;
+    private chainDifficulty: number;
 
-    constructor(GENESIS_BLOCK: Block, dificulty = 2) {
+
+    constructor(GENESIS_BLOCK: Block, chainDifficulty = 2) {
         this.chain = [GENESIS_BLOCK];
         this.nodeUrl = uuid();
-        this.dificulty = dificulty;
-        this.dificultyStats = dificulty;
+        this.chainDifficulty = chainDifficulty;
     }
 
     newBlock(nonce: string | number, previousHash: string, hash: string): Block {
@@ -28,6 +27,7 @@ export class Blockchain {
             nonce.toString(),
             hash,
             previousHash,
+            this.chainDifficulty
         );
         this.pendingTransactions = [];
         this.chain.push(newBlock);
@@ -56,7 +56,7 @@ export class Blockchain {
         let nonce = 0;
         let hash = this.hashBlock(previousHash, currentBlockData, nonce);
 
-        while (hash.substring(0, this.dificulty) !== this.chain[0].hash.substring(0, this.dificulty)) {
+        while (hash.substring(0, this.chainDifficulty) !== this.chain[0].hash.substring(0, this.chainDifficulty)) {
             nonce++;
             hash = this.hashBlock(previousHash, currentBlockData, nonce);
         }
@@ -73,8 +73,8 @@ export class Blockchain {
             return false;
         }
 
-        return block.hash.substr(0, this.dificulty) ===
-            this.chain[0].hash.substr(0, this.dificulty);
+        return block.hash.substr(0, this.chainDifficulty) ===
+            this.chain[0].hash.substr(0, this.chainDifficulty);
     }
 
     isValidChain(blockchain: Blockchain): boolean {

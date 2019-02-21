@@ -1,0 +1,22 @@
+<table datatable
+[dtOptions]="dtOptions"
+[dtTrigger]="dtTrigger"
+class="row-border hover">
+
+    <thead>
+      <tr>
+        <th scope="col">Index</th>
+        <th>Time</th>
+        <th>Recipient</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+  <tbody>
+    <tr *ngFor="let pendingTransactions of blockchain.pendingTransactions">
+        <th scope="row">#{{ pendingTransactions.id }}</th>
+        <td scope="row">{{ pendingTransactions.timestamp }}</td>
+        <td scope="row">{{ pendingTransactions.recipient }}</td>
+        <td scope="row">{{ pendingTransactions.amount }}</td>
+    </tr>
+  </tbody>
+  </table>

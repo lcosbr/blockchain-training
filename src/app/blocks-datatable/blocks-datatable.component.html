@@ -1,0 +1,26 @@
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="cell-border row-border hover">
+
+  <thead class="datatableTHead">
+      <tr>
+        <th scope="col">Index</th>
+        <th>Transactions</th>
+        <th>Difficulty</th>
+        <th>Date Created</th>
+        <th>Hash</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let block of chain">
+        <th scope="row">#{{ block.index }}</th>
+        <td scope="row">{{ block.transactions.length }}</td>
+        <td scope="row">{{ block.difficulty }}</td>
+        <td scope="row">{{ block.timestamp }}</td>
+        <td scope="row" class="hash">{{ block.hash }}</td>
+      </tr>
+    </tbody>
+
+</table>

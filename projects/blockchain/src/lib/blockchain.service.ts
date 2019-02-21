@@ -3,12 +3,14 @@ import { Blockchain } from './models/blockchain';
 import { Block } from './models/block';
 import { Transaction } from './models/transaction';
 import { BlockData } from './models/block-data';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlockchainService {
   public blockchain: Blockchain;
+  public blockchainChange = new Subject<Block[]>();
 
   constructor(@Inject('GENESIS_BLOCK') GENESIS_BLOCK: Block) {
     this.blockchain = new Blockchain(GENESIS_BLOCK);
@@ -32,6 +34,7 @@ export class BlockchainService {
     const nonce = this.blockchain.proofOfWorkNonce(previousHash, currentBlockData);
     const hash = this.blockchain.hashBlock(previousHash, currentBlockData, nonce);
     const block = this.blockchain.newBlock(nonce, previousHash, hash);
+    this.blockchainChange.next(this.blockchain.chain.slice());
 
     return this.blockchain.validateBlock(block, latestBlock);
 

@@ -7,6 +7,7 @@ export class Block {
     public nonce: string;
     public hash: string;
     public previousHash: string;
+    public difficulty: number;
 
     constructor(
         index: number,
@@ -15,6 +16,7 @@ export class Block {
         nonce: string,
         hash: string,
         previousHash: string,
+        difficulty: number,
     ) {
         this.index = index;
         this.timestamp = timestamp;
@@ -22,6 +24,7 @@ export class Block {
         this.nonce = nonce;
         this.hash = hash;
         this.previousHash = previousHash;
+        this.difficulty = difficulty;
     }
 
 }

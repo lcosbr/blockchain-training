@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   { path: 'dashboard', component: DashboardComponent},
   { path: 'balance', component: BalanceComponent},
-  { path: 'transaction-button', component: TransactionButtonComponent}
+  { path: 'transaction-button', component: TransactionButtonComponent},
 ];
 
 @NgModule({
