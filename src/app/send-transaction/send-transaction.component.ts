@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Inject, TemplateRef, ContentChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlockchainService, Transaction } from 'projects/blockchain/src/public_api';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -18,14 +19,29 @@ export class SendTransactionComponent implements OnInit {
     class: 'modal-dialog-centered'
   };
 
-  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService, private modalService: BsModalService) {
-  }
+  public sendTrasactionForm: FormGroup;
+  public submitted = false;
+
+  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService,
+              private modalService: BsModalService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.sendTrasactionForm = this.formBuilder.group({
+      recipient: ['', [Validators.required, Validators.minLength(3)]],
+      amount: ['', Validators.required]
+  });
     this.variavel = this.valorDaVariavel;
   }
 
+  get f() { return this.sendTrasactionForm.controls; }
+
   onSend(amount: number, recipient: string, templateConfirmed: TemplateRef<any>, templateNotConfirmed: TemplateRef<any>) {
+    this.submitted = true;
+    if (this.sendTrasactionForm.invalid) {
+      return;
+    }
+
     const id = this.blockchainService.blockchain.nodeUrl;
     this.transaction = new Transaction(amount, id, recipient, String(Date.now()));
     if (this.blockchainService.addTransaction(this.transaction)) {
@@ -35,6 +51,8 @@ export class SendTransactionComponent implements OnInit {
       this.openModal(templateNotConfirmed);
     }
   }
+
+
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.modalConfig);

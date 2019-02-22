@@ -1,24 +1,58 @@
-<div>
-  <div class="form-group">
-      <label for="recipient">Recipient:  </label>
- <input #recipient type="text" class="form-control" placeholder="Recipient ID">
-  </div>
-  <div class="form-group">
-      <label for="amount">Amount:  </label>
-      <input #amount type="number" class="form-control" step="0.5">
-  </div>
- <button class="btn btn-primary" (click)="onSend(amount.value, recipient.value, modalConfirmed, modalNotConfirmed);"> Send</button>
+<div class="container">
+  <h3 class="text-dark">
+    Send a transaction:
+  </h3>
+  <br>
+  <form [formGroup]="sendTrasactionForm" (ngSubmit)="onSend(amount.value, recipient.value, modalConfirmed, modalNotConfirmed);">
+    <div class="form-group">
+        <label class="labelInput" for="recipient">Recipient:  </label>
+        <input
+          #recipient
+          type="text"
+          class="form-control"
+          placeholder="Recipient Name's"
+          formControlName="recipient"
+          [ngClass]="{ 'is-invalid': submitted && f.recipient.errors }"
+        />
+        <div *ngIf="submitted && f.recipient.errors" class="invalid-feedback">
+            <div *ngIf="f.recipient.errors.required">Recipient is required</div>
+            <div *ngIf="f.recipient.errors.minlength">Recipient must be at least 6 characters</div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="labelInput" for="amount">Amount:  </label>
+        <input
+          #amount
+          type="number"
+          class="form-control"
+          step="0.5"
+          placeholder="Total of Amount"
+          formControlName="amount"
+          [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"
+        />
+        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+            <div *ngIf="f.amount.errors.required">Amount is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">Send</button>
+    </div>
+  </form>
 </div>
 
+
+<!-- MODAL TEMPLATES -->
 <ng-template #modalConfirmed>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Transaction Created!</h4>
     </div>
     <div class="modal-body">
       <span class="font-weight-bold">Transaction ID: </span>{{ transaction.id }} <br>
-      <span class="font-weight-bold">Date: </span>{{ transaction.timestamp }} <br>
-      <span class="font-weight-bold">Amount value: </span>{{ transaction.amount }} <br>
+      <span class="font-weight-bold">Created Date: </span>{{ transaction.timestamp | date:'MMM d, y, h:mm:ss a' }} <br>
       <span class="font-weight-bold">Recipient: </span>{{ transaction.recipient }} <br>
+      <span class="font-weight-bold">Amount Send: </span>{{ transaction.amount }} <br>
+      <span class="font-weight-bold">Status: </span><span class="text-danger">Pending</span> <br>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>

@@ -31,7 +31,8 @@ export class PendingTransactionsDatatableComponent implements  AfterViewInit, On
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      lengthChange: false
+      lengthChange: false,
+      order: [ 1, 'desc' ]
     };
   }
 

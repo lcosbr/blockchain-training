@@ -1,22 +1,36 @@
-<div>
-    <tabset>
-      <tab  heading="Blocks">
-        <div class="datatable">
-          <app-blocks-datatable></app-blocks-datatable>
-        </div>
-      </tab>
-      <tab heading="Transactions">
-        <div class="datatable">
-          <app-transactions-datatable></app-transactions-datatable>
-        </div>
-      </tab>
-      <tab heading="Pending Transactions">
-        <div class="datatable">
-          <app-pending-transactions-datatable></app-pending-transactions-datatable>
-        </div>
-      </tab>
-    </tabset>
+<div class="container">
+  <h3 class="text-dark">
+      Dashboard:
+  </h3>
+  <br>
+  <div>
+      <tabset>
+        <tab>
+            <ng-template tabHeading>
+                <span tooltip="All Blocks Created!" tooltipPlacement="top">Blocks</span>
+            </ng-template>
+          <div class="datatable">
+            <app-blocks-datatable></app-blocks-datatable>
+          </div>
+        </tab>
+        <tab>
+            <ng-template tabHeading>
+                <span tooltip="All Transactions Completed!" tooltipPlacement="top">Transactions</span>
+            </ng-template>
+          <div class="datatable">
+            <app-transactions-datatable></app-transactions-datatable>
+          </div>
+        </tab>
+        <tab>
+            <ng-template tabHeading>
+                <span tooltip="All Transactions Pending!" tooltipPlacement="top">Pending Transactions</span>
+            </ng-template>
+          <div class="datatable">
+            <app-pending-transactions-datatable></app-pending-transactions-datatable>
+          </div>
+        </tab>
+      </tabset>
+  </div>
 </div>
-
 
 

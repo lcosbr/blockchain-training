@@ -2,18 +2,20 @@
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover">
   <thead>
     <tr>
-      <th scope="col">Index</th>
-      <th>Time</th>
+      <th scope="col">Transaction Index</th>
+      <th>Created Date</th>
+      <th>Block Index</th>
       <th>Recipient</th>
       <th>Amount</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let transaction of transactions">
-        <th scope="row">#{{ transaction.id }}</th>
-        <td scope="row">{{ transaction.timestamp }}</td>
-        <td scope="row">{{ transaction.recipient }}</td>
-        <td scope="row">{{ transaction.amount }}</td>
+        <th class="index" scope="row" width="30%">#{{ transaction.id }}</th>
+        <td class="date" scope="row" width="20%">{{ transaction.timestamp | date:'MMM d, y, h:mm:ss a'}}</td>
+        <th scope="row" class="index" width="15%">#{{ searchBlockIndex(transaction) }}</th>
+        <td scope="row" width="25%">{{ transaction.recipient }}</td>
+        <td scope="row" width="10%">{{ transaction.amount }}</td>
     </tr>
   </tbody>
 </table>

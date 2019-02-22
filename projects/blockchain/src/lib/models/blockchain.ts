@@ -109,4 +109,15 @@ export class Blockchain {
       return transactions;
     }
 
+    searchBlockTransactionIndex(transaction: Transaction): number {
+      for (const block of this.chain) {
+        for (const transactionchain of block.transactions) {
+          if (transactionchain === transaction) {
+            return block.index;
+          }
+        }
+      }
+      return 1;
+    }
+
 }

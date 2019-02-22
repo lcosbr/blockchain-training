@@ -14,7 +14,7 @@
   <div class="modal-body">
     <span class="text-muted">A new Block has been mined! </span> <br>
     <span class="font-weight-bold">Index: </span>{{ lastBlock.index }} <br>
-    <span class="font-weight-bold">Date: </span>{{ lastBlock.timestamp }} <br>
+    <span class="font-weight-bold">Created Date: </span>{{ lastBlock.timestamp | date:'MMM d, y, h:mm:ss a' }} <br>
     <span class="font-weight-bold">Total of Transactions: </span>{{ lastBlock.transactions.length }} <br>
   </div>
   <div class="modal-footer">

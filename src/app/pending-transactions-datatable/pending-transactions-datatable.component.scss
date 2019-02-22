@@ -1,6 +1,11 @@
-.hash{
+.index{
   font-size: 12px;
-  font-style: italic;
+  font-style: normal;
+  color: rgb(70, 70, 70);
+}
+.date{
+  font-size: 11px;
+  font-style: normal;
   color: rgb(95, 95, 95);
 }
 .row-border{
@@ -8,12 +13,13 @@
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  text-align: center;
 }
 .row-border:hover{
   opacity: 0.9;
 }
 .row-border>tbody{
-  color: black;
+  color: #444444;
 }
 table{
   border: 1px #cfcfcf solid;

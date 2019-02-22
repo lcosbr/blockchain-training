@@ -1,21 +1,81 @@
-<div>
-  <div class="input-group mb-3">
-      <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon3">Owner Username</span>
+<div class="container">
+  <h3 class="text-dark">
+    Search User Information:
+  </h3>
+  <br>
+  <div class="row">
+      <div class="col-md-6 col-left-inputbalance">
+          <h5>Input data below to search users or transactions:</h5><br>
+          <div class="input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon3">Receipt's Name</span>
+              </div>
+              <input #owner type="text" class="form-control" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="button-addon2"
+                  (click)="getBalance(owner.value)">
+                  Get Balance
+                </button>
+              </div>
+            </div>
+            <h5 class="orSection">OR</h5>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Transaction ID#</span>
+                </div>
+                <input #owner2 type="text" class="form-control" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="button-addon2"
+                    (click)="getBalance(owner2.value)">
+                    Get Balance
+                  </button>
+                </div>
+            </div>
+          </div>
+
+      <div
+        class="col-md-4 ml-auto col-right-result resultpositive"
+        *ngIf="!initNoResult && resultIsValid">
+        <table class="table table-sm tableresult">
+            <tr>
+              <td class="firstColumnResult">Results:</td>
+            </tr>
+            <tr>
+              <th>Recipient</th>
+              <td>{{ balance.owner }}</td>
+            </tr>
+            <tr>
+                <th>Balance</th>
+                <td>${{ balance.value }} <small>USD</small></td>
+            </tr>
+            <tr>
+              <th><span tooltip="Total of Transactions Received" tooltipPlacement="left">TTR</span></th>
+              <td>{{ balance.totalOfTransactions }}</td>
+            </tr>
+            <tr>
+              <th><span tooltip="Total of Blocks Involved" tooltipPlacement="left">TBI</span></th>
+              <td>{{ balance.blocksEnvolved }}</td>
+            </tr>
+        </table>
       </div>
-      <input #owner type="text" class="form-control" aria-describedby="button-addon2">
-      <div class="input-group-append">
-        <button
-          class="btn btn-primary"
-          type="button"
-          id="button-addon2"
-          (click)="getBalance(owner.value)">
-          Get Balance
-        </button>
+      <div
+      class="col-md-4 ml-auto col-right-result resultnegative"
+      *ngIf="!resultIsValid && !initNoResult">
+      <span>No Results Found!</span><br>
+      </div>
+      <div
+        class="col-md-4 ml-auto col-right-result initnoresult"
+        *ngIf="initNoResult">
+        <span>Search to display results!</span><br>
       </div>
     </div>
-
-  <span class="balance">
-    Saldo de {{balance.owner}}: R${{balance.value}}
-  </span>
+  <div>
 </div>
+
+

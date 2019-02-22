@@ -33,7 +33,8 @@ export class BlocksDatatableComponent implements AfterViewInit, OnDestroy, OnIni
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      lengthChange: false
+      lengthChange: false,
+      order: [ 0, 'desc' ]
     };
   }
 

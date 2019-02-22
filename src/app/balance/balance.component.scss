@@ -1,0 +1,53 @@
+.orSection{
+  margin: 0;
+  padding: 10px;
+  font-weight: 600;
+}
+.col-left-inputbalance{
+  text-align: center;
+  background-color: rgba(0, 123, 255, 0.1);
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+.col-right-result{
+  padding: 20px 40px;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin-right: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.resultpositive{
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.resultnegative{
+  background-color: rgba(220, 53, 69, 0.1);
+  text-align: center;
+  color: rgb(255, 50, 50);
+  font-weight: 600;
+}
+
+.initnoresult{
+  background-color: rgba(127, 127, 127, 0.1);
+  text-align: center;
+  font-style: italic;
+  color: rgb(100, 100, 100);
+}
+
+.firstColumnResult{
+  border: 0px;
+  font-style: italic;
+  color: rgb(100, 100, 100);
+}
+.tableresult{
+  color: rgb(70, 70, 70);
+}

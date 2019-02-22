@@ -7,19 +7,19 @@
   <thead class="datatableTHead">
       <tr>
         <th scope="col">Index</th>
+        <th>Created Date</th>
         <th>Transactions</th>
         <th>Difficulty</th>
-        <th>Date Created</th>
         <th>Hash</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let block of chain">
-        <th scope="row">#{{ block.index }}</th>
-        <td scope="row">{{ block.transactions.length }}</td>
-        <td scope="row">{{ block.difficulty }}</td>
-        <td scope="row">{{ block.timestamp }}</td>
-        <td scope="row" class="hash">{{ block.hash }}</td>
+        <th scope="row" width="10%">#{{ block.index }}</th>
+        <td scope="row" class="date" width="20%">{{ block.timestamp | date:'MMM d, y, h:mm:ss a' }}</td>
+        <td scope="row" width="10%">{{ block.transactions.length }}</td>
+        <td scope="row" width="10%">{{ block.difficulty }}</td>
+        <td scope="row" class="hash" width="50%">{{ block.hash }}</td>
       </tr>
     </tbody>
 

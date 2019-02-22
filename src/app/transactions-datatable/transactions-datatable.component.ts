@@ -15,6 +15,7 @@ export class TransactionsDatatableComponent implements  AfterViewInit, OnDestroy
 
   public blockchain: Blockchain;
   public transactions: Transaction[];
+  public transactionBlockId: number;
   public chainSubscription: Subscription;
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<any> = new Subject();
@@ -34,8 +35,13 @@ export class TransactionsDatatableComponent implements  AfterViewInit, OnDestroy
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      lengthChange: false
+      lengthChange: false,
+      order: [ 1, 'desc' ]
     };
+  }
+
+  searchBlockIndex(transaction: Transaction): number {
+    return this.blockchain.searchBlockTransactionIndex(transaction);
   }
 
   ngAfterViewInit(): void {
