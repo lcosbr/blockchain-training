@@ -11,16 +11,14 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class SendTransactionComponent implements OnInit {
   @Input() private valorDaVariavel: string;
   public variavel: string;
-  public confirmTransaction = false;
   public transaction: Transaction;
-
   public modalRef: BsModalRef;
   public modalConfig = {
     class: 'modal-dialog-centered'
   };
-
   public sendTrasactionForm: FormGroup;
   public submitted = false;
+  public confirmTransaction = false;
 
   constructor(@Inject(BlockchainService) private blockchainService: BlockchainService,
               private modalService: BsModalService,

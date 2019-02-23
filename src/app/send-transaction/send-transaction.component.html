@@ -1,73 +1,97 @@
+<h3 class="text-dark">
+  Send a transaction:
+</h3>
+<br>
 <div class="container">
-  <h3 class="text-dark">
-    Send a transaction:
-  </h3>
-  <br>
-  <form [formGroup]="sendTrasactionForm" (ngSubmit)="onSend(amount.value, recipient.value, modalConfirmed, modalNotConfirmed);">
-    <div class="form-group">
-        <label class="labelInput" for="recipient">Recipient:  </label>
-        <input
-          #recipient
-          type="text"
-          class="form-control"
-          placeholder="Recipient Name's"
-          formControlName="recipient"
-          [ngClass]="{ 'is-invalid': submitted && f.recipient.errors }"
-        />
-        <div *ngIf="submitted && f.recipient.errors" class="invalid-feedback">
+  <div class="row">
+    <div class="col-md-4">
+
+      <form [formGroup]="sendTrasactionForm"
+        (ngSubmit)="onSend(amount.value, recipient.value, modalConfirmed, modalNotConfirmed);">
+        <div class="form-group">
+          <label class="labelInput" for="recipient">Recipient: </label>
+          <input #recipient type="text" class="form-control" placeholder="Recipient Name's" formControlName="recipient"
+            [ngClass]="{ 'is-invalid': submitted && f.recipient.errors }" />
+          <div *ngIf="submitted && f.recipient.errors" class="invalid-feedback">
             <div *ngIf="f.recipient.errors.required">Recipient is required</div>
             <div *ngIf="f.recipient.errors.minlength">Recipient must be at least 6 characters</div>
-        </div>
+          </div>
 
-    </div>
-    <div class="form-group">
-        <label class="labelInput" for="amount">Amount:  </label>
-        <input
-          #amount
-          type="number"
-          class="form-control"
-          step="0.5"
-          placeholder="Total of Amount"
-          formControlName="amount"
-          [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"
-        />
-        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
-            <div *ngIf="f.amount.errors.required">Amount is required</div>
         </div>
+        <div class="form-group">
+          <label class="labelInput" for="amount">Amount: </label>
+          <input #amount type="number" class="form-control" step="0.5" placeholder="Total of Amount"
+            formControlName="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+          <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+            <div *ngIf="f.amount.errors.required">Amount is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Send</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-        <button class="btn btn-primary">Send</button>
+
+    <div class="col-md-6 ml-auto">
+      <!-- Template INIT -->
+      <div class="alert alert-primary" role="alert" *ngIf="!submitted">
+        <h4 class="alert-heading">Send Transaction Landing Page!</h4>
+        <p>You can create a transaction to an receipt to insert into a block. 
+          Please, fill the form on the left and push the "Send" button to send the transaction. </p>
+          <hr>
+          <p class="mb-0">The transaction will enter in a pending status 
+            and will be completed when occurs a new block mine!</p>
+      </div>
+      <!-- Template Success -->
+      <div class="alert alert-success" role="alert" *ngIf="submitted && confirmTransaction">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>The transaction has been created and is in pending status. See below the transaction info:</p>
+        <hr>
+        <p class="mb-0"><b>Transaction ID:</b> {{ transaction.id }} <br> <b>Recipient:</b> {{ transaction.recipient }} <br> <b>Amount Send:</b> {{ transaction.amount }}</p>
+      </div>
+      <!-- Template Failed -->
+      <div class="alert alert-danger" role="alert" *ngIf="submitted && !confirmTransaction">
+        <h4 class="alert-heading">Transaction was not created!</h4>
+        <p>Please, check the information added on the left form and try again.</p>
+        <hr>
+        <p class="mb-0">The transaction will enter in a pending status 
+            and will be completed when occurs a new block mine!</p>
+      </div>
     </div>
-  </form>
+  </div>
 </div>
 
 
+
+
 <!-- MODAL TEMPLATES -->
+<!-- Confirmed -->
 <ng-template #modalConfirmed>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Transaction Created!</h4>
-    </div>
-    <div class="modal-body">
-      <span class="font-weight-bold">Transaction ID: </span>{{ transaction.id }} <br>
-      <span class="font-weight-bold">Created Date: </span>{{ transaction.timestamp | date:'MMM d, y, h:mm:ss a' }} <br>
-      <span class="font-weight-bold">Recipient: </span>{{ transaction.recipient }} <br>
-      <span class="font-weight-bold">Amount Send: </span>{{ transaction.amount }} <br>
-      <span class="font-weight-bold">Status: </span><span class="text-danger">Pending</span> <br>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
-      </div>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Transaction Created!</h4>
+  </div>
+  <div class="modal-body">
+    <span class="font-weight-bold">Transaction ID: </span>{{ transaction.id }} <br>
+    <span class="font-weight-bold">Created Date: </span>{{ transaction.timestamp | date:'MMM d, y, h:mm:ss a' }} <br>
+    <span class="font-weight-bold">Recipient: </span>{{ transaction.recipient }} <br>
+    <span class="font-weight-bold">Amount Send: </span>{{ transaction.amount }} <br>
+    <span class="font-weight-bold">Status: </span><span class="text-danger">Pending</span> <br>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+  </div>
 </ng-template>
 
+<!-- Not Confirmed -->
 <ng-template #modalNotConfirmed>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Transaction not created!</h4>
-    </div>
-    <div class="modal-body">
-      The transaction has not created due to a error! <br>
-      Please, try again.
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
-      </div>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Transaction not created!</h4>
+  </div>
+  <div class="modal-body">
+    The transaction has not created due to a error! <br>
+    Please, try again.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+  </div>
 </ng-template>
