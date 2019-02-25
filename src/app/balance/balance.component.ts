@@ -75,7 +75,7 @@ export class BalanceComponent implements OnInit {
     this.userInfo.blocksEnvolved = blocksCounter;
   }
 
-  getTransaction(transactionid: string){
+  getTransaction(transactionid: string) {
     const transactions = this.blockchainService.blockchain.listAllTransactions();
     let counter = 0;
     for (const transaction of transactions) {

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -24,6 +24,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MainPageComponent } from './main-page/main-page.component';
 
 
 const GenesisProvider = () => {
@@ -43,7 +44,8 @@ const GenesisProvider = () => {
     MineButtonComponent,
     TransactionsDatatableComponent,
     BlocksDatatableComponent,
-    PendingTransactionsDatatableComponent
+    PendingTransactionsDatatableComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ const GenesisProvider = () => {
     provide: 'GENESIS_BLOCK',
     useFactory: GenesisProvider
   },
-  BlockchainService
+  BlockchainService,
+  Title
 ],
   bootstrap: [AppComponent]
 })

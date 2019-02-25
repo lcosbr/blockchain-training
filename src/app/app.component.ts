@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'blockchain-wallet-training';
-
-  constructor() { }
-
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('BlockChain Wallet Training');
+   }
 }
