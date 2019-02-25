@@ -8,7 +8,6 @@ import { Block, BlockchainService } from 'projects/blockchain/src/public_api';
 import { SendTransactionComponent } from './send-transaction/send-transaction.component';
 import { BalanceComponent } from './balance/balance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { BlockComponent } from './block/block.component';
 import { TransactionButtonComponent } from './transaction-button/transaction-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -37,7 +36,6 @@ const GenesisProvider = () => {
     SendTransactionComponent,
     BalanceComponent,
     DashboardComponent,
-    BlockComponent,
     TransactionButtonComponent,
     FooterComponent,
     HeaderComponent,

@@ -3,9 +3,8 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light rounded">
     <a
       class="navbar-brand mb-0 brand"
-      href="#"
       [ngClass]="{ valid: isValid, invalid: !isValid }"
-    >
+      [routerLink]="['main-page']">
       <span>BlockChain</span>
     </a>
     <button
