@@ -41,7 +41,7 @@ export class SendTransactionComponent implements OnInit {
     }
 
     const id = this.blockchainService.blockchain.nodeUrl;
-    this.transaction = new Transaction(amount, id, recipient, String(Date.now()));
+    this.transaction = new Transaction(amount, id, recipient, Date.now());
     if (this.blockchainService.addTransaction(this.transaction)) {
       this.confirmTransaction = true;
       this.openModal(templateConfirmed);

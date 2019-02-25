@@ -5,13 +5,13 @@ export class Transaction {
     public amount: number;
     public sender: string;
     public recipient: string;
-    public timestamp: string;
+    public timestamp: number;
 
     constructor(
         amount: number,
         sender: string,
         recipient: string,
-        timestamp: string
+        timestamp: number
     ) {
         this.amount = amount;
         this.sender = sender;

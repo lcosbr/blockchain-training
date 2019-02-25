@@ -16,8 +16,8 @@
                   class="btn btn-primary"
                   type="button"
                   id="button-addon2"
-                  (click)="getBalance(owner.value)">
-                  Get Balance
+                  (click)="getReceipt(owner.value)">
+                  Get Info
                 </button>
               </div>
             </div>
@@ -26,14 +26,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">Transaction ID#</span>
                 </div>
-                <input #owner2 type="text" class="form-control" aria-describedby="button-addon2">
+                <input #transaction type="text" class="form-control" aria-describedby="button-addon2">
                 <div class="input-group-append">
                   <button
                     class="btn btn-primary"
                     type="button"
                     id="button-addon2"
-                    (click)="getBalance(owner2.value)">
-                    Get Balance
+                    (click)="getTransaction(transaction.value)">
+                    Get Info
                   </button>
                 </div>
             </div>
@@ -41,37 +41,69 @@
 
       <div
         class="col-md-4 ml-auto col-right-result resultpositive"
-        *ngIf="!initNoResult && resultIsValid">
+        *ngIf="(!initInfoNoResult && resultInfoIsValid) && initTransactionNoResult">
         <table class="table table-sm tableresult">
             <tr>
               <td class="firstColumnResult">Results:</td>
             </tr>
             <tr>
               <th>Recipient</th>
-              <td>{{ balance.owner }}</td>
+              <td>{{ userInfo.owner }}</td>
             </tr>
             <tr>
                 <th>Balance</th>
-                <td>${{ balance.value }} <small>USD</small></td>
+                <td>${{ userInfo.value }} <small>USD</small></td>
             </tr>
             <tr>
               <th><span tooltip="Total of Transactions Received" tooltipPlacement="left">TTR</span></th>
-              <td>{{ balance.totalOfTransactions }}</td>
+              <td>{{ userInfo.totalOfTransactions }}</td>
             </tr>
             <tr>
               <th><span tooltip="Total of Blocks Involved" tooltipPlacement="left">TBI</span></th>
-              <td>{{ balance.blocksEnvolved }}</td>
+              <td>{{ userInfo.blocksEnvolved }}</td>
             </tr>
         </table>
       </div>
+
+      <div
+        class="col-md-5 ml-auto col-right-result resultpositive"
+        *ngIf="(initInfoNoResult && resultTransactionIsValid) && !initTransactionNoResult">
+        <table class="table table-sm tableresult">
+            <tr>
+              <td class="firstColumnResult">Results:</td>
+            </tr>
+            <tr>
+              <th>Recipient</th>
+              <td>{{ transactionInfo.owner }}</td>
+            </tr>
+            <tr>
+                <th>Sender UUID</th>
+                <td><small>${{ transactionInfo.senderUUID }}</small></td>
+            </tr>
+            <tr>
+              <th>BlockIndex</th>
+              <td>{{ transactionInfo.blockIndex }}</td>
+            </tr>
+            <tr>
+              <th>Amount</th>
+              <td>{{ transactionInfo.amount }} <small>USD</small></td>
+            </tr>
+            <tr>
+              <th>Date Created</th>
+              <td><small>{{ transactionInfo.dateCreated | date:'MMM d, y, h:mm:ss a' }}</small></td>
+            </tr>
+        </table>
+      </div>
+
       <div
       class="col-md-4 ml-auto col-right-result resultnegative"
-      *ngIf="!resultIsValid && !initNoResult">
-      <span>No Results Found!</span><br>
+      *ngIf="(!resultTransactionIsValid && !initTransactionNoResult && initInfoNoResult)
+              || (!resultInfoIsValid && !initInfoNoResult && initTransactionNoResult)">
+        <span>No Results Found!</span><br>
       </div>
       <div
         class="col-md-4 ml-auto col-right-result initnoresult"
-        *ngIf="initNoResult">
+        *ngIf="initInfoNoResult && initTransactionNoResult">
         <span>Search to display results!</span><br>
       </div>
     </div>

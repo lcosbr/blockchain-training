@@ -15,10 +15,11 @@
       <h4 class="modal-title pull-left">We have <b>{{ blockchain.pendingTransactions.length }}</b> transactions pending!</h4>
     </div>
     <div class="modal-body">
-      <span>Text Goes Here!</span>
+      <span>You can create a new transaction or mine a new Block to confirm the transactions!</span>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['dashboard']">View Dashboard</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modalRef.hide()" [routerLink]="['send-transaction']">New Transaction</button>
         <app-mine-button (click)="modalRef.hide()"></app-mine-button>
         <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
       </div>

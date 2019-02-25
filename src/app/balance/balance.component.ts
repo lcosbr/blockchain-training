@@ -12,20 +12,35 @@ export class BalanceComponent implements OnInit {
 
   private owner: string;
   private value: number;
-  public initNoResult = true;
-  public resultIsValid = false;
-  public balance: { owner: string; value: number; totalOfTransactions: number, blocksEnvolved: number };
+  public initInfoNoResult = true;
+  public initTransactionNoResult = true;
+  public resultInfoIsValid = false;
+  public resultTransactionIsValid = false;
+  public userInfo: { owner: string; value: number; totalOfTransactions: number, blocksEnvolved: number };
+  public transactionInfo: { transactionID: string;
+                            owner: string;
+                            senderUUID: string;
+                            blockIndex: number;
+                            amount: number;
+                            dateCreated: number};
   public searchByReceiptForm: FormGroup;
+
 
   constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) {
     this.chain = blockchainService.blockchain.chain;
   }
 
   ngOnInit() {
-    this.balance = { owner: this.owner, value: this.value, totalOfTransactions: 0, blocksEnvolved: 0};
+    this.userInfo = { owner: this.owner, value: this.value, totalOfTransactions: 0, blocksEnvolved: 0};
+    this.transactionInfo = {transactionID: 'GenesisID',
+                            owner: this.owner,
+                            senderUUID: this.owner,
+                            blockIndex: 0,
+                            amount: 0,
+                            dateCreated: 123321};
   }
 
-  getBalance(owner: string) {
+  getReceipt(owner: string) {
     this.owner = owner;
     this.value = 0;
     const chain = this.chain;
@@ -46,16 +61,43 @@ export class BalanceComponent implements OnInit {
         validatorRecipientBlock = false;
       }
       if (totalOfTransactions === 0) {
-          this.resultIsValid = false;
+          this.resultInfoIsValid = false;
       } else {
-        this.resultIsValid = true;
+        this.resultInfoIsValid = true;
       }
 
     }
-    this.initNoResult = false;
-    this.balance.owner = this.owner;
-    this.balance.value = this.value;
-    this.balance.totalOfTransactions = totalOfTransactions;
-    this.balance.blocksEnvolved = blocksCounter;
+    this.initInfoNoResult = false;
+    this.initTransactionNoResult = true;
+    this.userInfo.owner = this.owner;
+    this.userInfo.value = this.value;
+    this.userInfo.totalOfTransactions = totalOfTransactions;
+    this.userInfo.blocksEnvolved = blocksCounter;
   }
+
+  getTransaction(transactionid: string){
+    const transactions = this.blockchainService.blockchain.listAllTransactions();
+    let counter = 0;
+    for (const transaction of transactions) {
+        if (transaction.id === transactionid) {
+          counter++;
+          this.transactionInfo.transactionID = transaction.id;
+          this.transactionInfo.owner = transaction.recipient;
+          this.transactionInfo.senderUUID = transaction.sender;
+          this.transactionInfo.amount = transaction.amount;
+          this.transactionInfo.dateCreated = transaction.timestamp;
+          this.transactionInfo.blockIndex =
+            this.blockchainService.blockchain.searchBlockTransactionIndex(transaction);
+        }
+    }
+    if (counter === 0) {
+      this.resultTransactionIsValid = false;
+    } else {
+      this.resultTransactionIsValid = true;
+    }
+    this.initTransactionNoResult = false;
+    this.initInfoNoResult = true;
+  }
+
+
 }

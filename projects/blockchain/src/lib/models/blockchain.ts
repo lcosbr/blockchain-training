@@ -95,7 +95,7 @@ export class Blockchain {
     }
 
     newTransaction(amount: number, sender: string, recipient: string): Transaction {
-        const transaction = new Transaction(amount, sender, recipient, String(Date.now()));
+        const transaction = new Transaction(amount, sender, recipient, Date.now());
         return transaction;
     }
 
