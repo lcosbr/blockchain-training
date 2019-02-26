@@ -1,8 +1,9 @@
-<table datatable
-[dtOptions]="dtOptions"
-[dtTrigger]="dtTrigger"
-class="row-border hover">
-
+<div class="table-responsive">
+  <table
+    datatable
+    [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
+    class="row-border hover">
     <thead>
       <tr>
         <th scope="col">Transaction Index</th>
@@ -11,12 +12,17 @@ class="row-border hover">
         <th>Amount</th>
       </tr>
     </thead>
-  <tbody>
-    <tr *ngFor="let pendingTransactions of blockchain.pendingTransactions">
-        <th scope="row" class="index" width="40%">#{{ pendingTransactions.id }}</th>
-        <td scope="row" class="date" width="20%">{{ pendingTransactions.timestamp | date:'MMM d, y, h:mm:ss a'}}</td>
+    <tbody>
+      <tr *ngFor="let pendingTransactions of blockchain.pendingTransactions">
+        <th scope="row" class="index" width="40%">
+          #{{ pendingTransactions.id }}
+        </th>
+        <td scope="row" class="date" width="20%">
+          {{ pendingTransactions.timestamp | date: "MMM d, y, h:mm:ss a" }}
+        </td>
         <td scope="row" width="30%">{{ pendingTransactions.recipient }}</td>
         <td scope="row" width="10%">{{ pendingTransactions.amount }}</td>
-    </tr>
-  </tbody>
+      </tr>
+    </tbody>
   </table>
+</div>
