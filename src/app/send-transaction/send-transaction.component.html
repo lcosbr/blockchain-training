@@ -12,9 +12,9 @@
           <label class="labelInput" for="recipient">Recipient: </label>
           <input #recipient type="text" class="form-control" placeholder="Recipient Name's" formControlName="recipient"
             [ngClass]="{ 'is-invalid': submitted && f.recipient.errors }" />
-          <div *ngIf="submitted && f.recipient.errors" class="invalid-feedback">
-            <div *ngIf="f.recipient.errors.required">Recipient is required</div>
-            <div *ngIf="f.recipient.errors.minlength">Recipient must be at least 3 characters</div>
+          <div *ngIf="submitted && !!f.recipient.errors" class="invalid-feedback">
+            <div *ngIf="!!f.recipient.errors.required">Recipient is required</div>
+            <div *ngIf="!!f.recipient.errors.minlength">Recipient must be at least 3 characters</div>
           </div>
 
         </div>
@@ -22,8 +22,8 @@
           <label class="labelInput" for="amount">Amount: </label>
           <input #amount type="number" class="form-control" step="0.5" placeholder="Total of Amount"
             formControlName="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
-          <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
-            <div *ngIf="f.amount.errors.required">Amount is required</div>
+          <div *ngIf="submitted && !!f.amount.errors" class="invalid-feedback">
+            <div *ngIf="!!f.amount.errors.required">Amount is required</div>
           </div>
         </div>
         <div class="form-group">
