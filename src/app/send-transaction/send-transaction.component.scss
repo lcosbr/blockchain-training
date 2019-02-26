@@ -17,3 +17,11 @@
   opacity: 0.8;
 }
 
+@media screen and (max-width: 800px) {
+  .btn-primary{
+    width: 100%;
+  }
+  .alert{
+    padding-bottom: 50px;
+  }
+}
