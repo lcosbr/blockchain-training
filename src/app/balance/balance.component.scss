@@ -51,3 +51,14 @@
 .tableresult{
   color: rgb(70, 70, 70);
 }
+
+@media screen and (max-width: 800px) {
+  .col-right-result{
+    padding: 20px;
+    margin-right: 0px;
+  }
+  .col-left-inputbalance{
+    padding: 20px;
+    margin-left: 0px;
+  }
+}

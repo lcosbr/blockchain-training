@@ -1,4 +1,11 @@
-import { Component, OnInit, Inject, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { BlockchainService, Block } from 'projects/blockchain/src/public_api';
 import { Subscription, Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
@@ -8,8 +15,8 @@ import { DataTableDirective } from 'angular-datatables';
   templateUrl: './blocks-datatable.component.html',
   styleUrls: ['./blocks-datatable.component.scss']
 })
-export class BlocksDatatableComponent implements AfterViewInit, OnDestroy, OnInit {
-
+export class BlocksDatatableComponent
+  implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
@@ -18,12 +25,13 @@ export class BlocksDatatableComponent implements AfterViewInit, OnDestroy, OnIni
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<any> = new Subject();
 
-
-  constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) {
+  constructor(
+    @Inject(BlockchainService) private blockchainService: BlockchainService
+  ) {
     this.chain = blockchainService.blockchain.chain;
-   }
+  }
 
-   ngOnInit() {
+  ngOnInit() {
     this.chainSubscription = this.blockchainService.blockchainChange.subscribe(
       (chain: Block[]) => {
         this.chain = chain;
@@ -34,7 +42,7 @@ export class BlocksDatatableComponent implements AfterViewInit, OnDestroy, OnIni
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthChange: false,
-      order: [ 0, 'desc' ]
+      order: [0, 'desc']
     };
   }
 
@@ -52,5 +60,4 @@ export class BlocksDatatableComponent implements AfterViewInit, OnDestroy, OnIni
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
-
 }

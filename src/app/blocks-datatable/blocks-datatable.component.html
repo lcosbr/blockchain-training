@@ -1,10 +1,10 @@
-<table
-  datatable
-  [dtOptions]="dtOptions"
-  [dtTrigger]="dtTrigger"
-  class="cell-border row-border hover">
-
-  <thead class="datatableTHead">
+<div class="table-responsive">
+  <table
+    datatable
+    [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
+    class="cell-border row-border hover">
+    <thead class="datatableTHead">
       <tr>
         <th scope="col">Index</th>
         <th>Created Date</th>
@@ -16,11 +16,13 @@
     <tbody>
       <tr *ngFor="let block of chain">
         <th scope="row" width="10%">#{{ block.index }}</th>
-        <td scope="row" class="date" width="20%">{{ block.timestamp | date:'MMM d, y, h:mm:ss a' }}</td>
+        <td scope="row" class="date" width="20%">
+          {{ block.timestamp | date: "MMM d, y, h:mm:ss a" }}
+        </td>
         <td scope="row" width="10%">{{ block.transactions.length }}</td>
         <td scope="row" width="10%">{{ block.difficulty }}</td>
         <td scope="row" class="hash" width="50%">{{ block.hash }}</td>
       </tr>
     </tbody>
-
-</table>
+  </table>
+</div>

@@ -1,5 +1,5 @@
 .imgMainPage{
-  width: 450px;
+  width: 400px;
   margin-left: 30px;
   margin-bottom: 20px;
   border: 2px solid white;
@@ -7,4 +7,24 @@
 }
 .imgMainPage:hover{
   opacity: 0.8;
+}
+
+@media screen and (max-width: 1000px) {
+  .imgMainPage{
+    margin-left: 0px;
+    margin-bottom: 0px;
+    width: 300px;
+    padding-bottom: 50px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imgMainPage{
+    margin-left: 0px;
+    margin-bottom: 0px;
+    width: 150px;
+    padding-bottom: 50px;
+    align-items: center;
+  }
 }

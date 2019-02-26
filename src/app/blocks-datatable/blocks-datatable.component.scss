@@ -1,34 +1,33 @@
-.hash{
+.hash {
   font-size: 11px;
   font-style: italic;
   color: rgb(95, 95, 95);
 }
-.date{
+.date {
   font-size: 12px;
   font-style: normal;
   color: rgb(95, 95, 95);
 }
 
-.row-border{
+.row-border {
   background-color: #007bff;
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   text-align: center;
 }
-.row-border:hover{
+.row-border:hover {
   opacity: 0.9;
 }
-.row-border>tbody{
+.row-border > tbody {
   color: #444444;
 }
-table{
+table {
   border: 1px #cfcfcf solid;
 }
-table.dataTable thead th{
+table.dataTable thead th {
   border-bottom: 1px #cfcfcf solid;
 }
-table.dataTable.no-footer{
+table.dataTable.no-footer {
   border-bottom: 1px #cfcfcf solid;
 }
-

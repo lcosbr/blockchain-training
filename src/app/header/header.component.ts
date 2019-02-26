@@ -10,10 +10,14 @@ export class HeaderComponent {
 
   public isValid: boolean;
   public blockchain: Blockchain;
+  public collapsed = true;
 
   constructor(@Inject(BlockchainService) private blockchainService: BlockchainService) {
     this.blockchain = this.blockchainService.blockchain;
     this.isValid = this.blockchain.isValidChain(this.blockchain);
   }
 
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
 }

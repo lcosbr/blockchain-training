@@ -2,112 +2,134 @@
   <h3 class="text-dark">
     Search User Information:
   </h3>
-  <br>
+  <br />
   <div class="row">
-      <div class="col-md-6 col-left-inputbalance">
-          <h5>Input data below to search users or transactions:</h5><br>
-          <div class="input-group">
-              <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon3">Receipt's Name</span>
-              </div>
-              <input #owner type="text" class="form-control" aria-describedby="button-addon2">
-              <div class="input-group-append">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  id="button-addon2"
-                  (click)="getReceipt(owner.value)">
-                  Get Info
-                </button>
-              </div>
-            </div>
-            <h5 class="orSection">OR</h5>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">Transaction ID#</span>
-                </div>
-                <input #transaction type="text" class="form-control" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    id="button-addon2"
-                    (click)="getTransaction(transaction.value)">
-                    Get Info
-                  </button>
-                </div>
-            </div>
-          </div>
-
-      <div
-        class="col-md-4 ml-auto col-right-result resultpositive"
-        *ngIf="(!initInfoNoResult && resultInfoIsValid) && initTransactionNoResult">
-        <table class="table table-sm tableresult">
-            <tr>
-              <td class="firstColumnResult">Results:</td>
-            </tr>
-            <tr>
-              <th>Recipient</th>
-              <td>{{ userInfo.owner }}</td>
-            </tr>
-            <tr>
-                <th>Balance</th>
-                <td>${{ userInfo.value }} <small>USD</small></td>
-            </tr>
-            <tr>
-              <th><span tooltip="Total of Transactions Received" tooltipPlacement="left">TTR</span></th>
-              <td>{{ userInfo.totalOfTransactions }}</td>
-            </tr>
-            <tr>
-              <th><span tooltip="Total of Blocks Involved" tooltipPlacement="left">TBI</span></th>
-              <td>{{ userInfo.blocksEnvolved }}</td>
-            </tr>
-        </table>
+    <div class="col-md-6 col-left-inputbalance">
+      <h5>Input data below to search users or transactions:</h5>
+      <br />
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Receipt's Name</span>
+        </div>
+        <input
+          #owner
+          type="text"
+          class="form-control"
+          aria-describedby="button-addon2"/>
+        <div class="input-group-append">
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="button-addon2"
+            (click)="getReceipt(owner.value)">
+            Get Info
+          </button>
+        </div>
       </div>
-
-      <div
-        class="col-md-5 ml-auto col-right-result resultpositive"
-        *ngIf="(initInfoNoResult && resultTransactionIsValid) && !initTransactionNoResult">
-        <table class="table table-sm tableresult">
-            <tr>
-              <td class="firstColumnResult">Results:</td>
-            </tr>
-            <tr>
-              <th>Recipient</th>
-              <td>{{ transactionInfo.owner }}</td>
-            </tr>
-            <tr>
-                <th>Sender UUID</th>
-                <td><small>${{ transactionInfo.senderUUID }}</small></td>
-            </tr>
-            <tr>
-              <th>BlockIndex</th>
-              <td>{{ transactionInfo.blockIndex }}</td>
-            </tr>
-            <tr>
-              <th>Amount</th>
-              <td>{{ transactionInfo.amount }} <small>USD</small></td>
-            </tr>
-            <tr>
-              <th>Date Created</th>
-              <td><small>{{ transactionInfo.dateCreated | date:'MMM d, y, h:mm:ss a' }}</small></td>
-            </tr>
-        </table>
-      </div>
-
-      <div
-      class="col-md-4 ml-auto col-right-result resultnegative"
-      *ngIf="(!resultTransactionIsValid && !initTransactionNoResult && initInfoNoResult)
-              || (!resultInfoIsValid && !initInfoNoResult && initTransactionNoResult)">
-        <span>No Results Found!</span><br>
-      </div>
-      <div
-        class="col-md-4 ml-auto col-right-result initnoresult"
-        *ngIf="initInfoNoResult && initTransactionNoResult">
-        <span>Search to display results!</span><br>
+      <h5 class="orSection">OR</h5>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">
+            Transaction ID#
+          </span>
+        </div>
+        <input
+          #transaction
+          type="text"
+          class="form-control"
+          aria-describedby="button-addon2"/>
+        <div class="input-group-append">
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="button-addon2"
+            (click)="getTransaction(transaction.value)">
+              Get Info
+          </button>
+        </div>
       </div>
     </div>
-  <div>
+
+    <div
+      class="col-md-4 ml-auto col-right-result resultpositive"
+      *ngIf="!initInfoNoResult && resultInfoIsValid && initTransactionNoResult">
+      <table class="table table-sm tableresult">
+        <tr>
+          <td class="firstColumnResult">Results:</td>
+        </tr>
+        <tr>
+          <th>Recipient</th>
+          <td>{{ userInfo.owner }}</td>
+        </tr>
+        <tr>
+          <th>Balance</th>
+          <td>${{ userInfo.value }} <small>USD</small></td>
+        </tr>
+        <tr>
+          <th>
+            <span
+              tooltip="Total of Transactions Received"
+              tooltipPlacement="left">
+                TTR
+              </span>
+          </th>
+          <td>{{ userInfo.totalOfTransactions }}</td>
+        </tr>
+        <tr>
+          <th>
+            <span tooltip="Total of Blocks Involved" tooltipPlacement="left">
+              TBI
+            </span>
+          </th>
+          <td>{{ userInfo.blocksEnvolved }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div
+      class="col-md-5 ml-auto col-right-result resultpositive"
+      *ngIf="initInfoNoResult && resultTransactionIsValid && !initTransactionNoResult">
+      <table class="table table-sm tableresult">
+        <tr>
+          <td class="firstColumnResult">Results:</td>
+        </tr>
+        <tr>
+          <th>Recipient</th>
+          <td>{{ transactionInfo.owner }}</td>
+        </tr>
+        <tr>
+          <th>Sender UUID</th>
+          <td>
+            <small>${{ transactionInfo.senderUUID }}</small>
+          </td>
+        </tr>
+        <tr>
+          <th>BlockIndex</th>
+          <td>{{ transactionInfo.blockIndex }}</td>
+        </tr>
+        <tr>
+          <th>Amount</th>
+          <td>{{ transactionInfo.amount }} <small>USD</small></td>
+        </tr>
+        <tr>
+          <th>Date Created</th>
+          <td>
+            <small>{{ transactionInfo.dateCreated | date: "MMM d, y, h:mm:ss a" }}</small>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div
+      class="col-md-4 ml-auto col-right-result resultnegative"
+      *ngIf="(!resultTransactionIsValid && !initTransactionNoResult && initInfoNoResult) ||
+              (!resultInfoIsValid && !initInfoNoResult && initTransactionNoResult)">
+      <span>No Results Found!</span><br />
+    </div>
+    <div
+      class="col-md-4 ml-auto col-right-result initnoresult"
+      *ngIf="initInfoNoResult && initTransactionNoResult">
+      <span>Search to display results!</span><br />
+    </div>
+  </div>
 </div>
-
-
