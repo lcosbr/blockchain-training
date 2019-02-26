@@ -8,9 +8,12 @@ body {
 }
 
 
+
 //Bootstrap Class Overwrite
 .jumbotron{
   background-color: #ffffff;
   padding-bottom: 30px;
   padding-top: 50px;
 }
+
+@media only screen and (width:800px){}
