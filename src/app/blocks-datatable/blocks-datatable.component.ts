@@ -17,7 +17,7 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class BlocksDatatableComponent
   implements AfterViewInit, OnDestroy, OnInit {
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective, { static: true })
   dtElement: DataTableDirective;
 
   public chain: Block[];

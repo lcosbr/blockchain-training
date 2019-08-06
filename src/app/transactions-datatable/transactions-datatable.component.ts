@@ -10,7 +10,7 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class TransactionsDatatableComponent implements  AfterViewInit, OnDestroy, OnInit {
 
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective, { static: true })
   dtElement: DataTableDirective;
 
   public blockchain: Blockchain;
