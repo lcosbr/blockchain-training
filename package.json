@@ -27,7 +27,7 @@
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
     "hash.js": "^1.1.7",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-bootstrap": "^3.3.0",
     "node-sass": "^4.12.0",
     "rxjs": "~6.5.2",
